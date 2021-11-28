@@ -154,7 +154,7 @@ Welcome to *** ScraperLoya *** the customizable WebScraber
 
     -h              help
     -url            target url - please use the form: http://example.smth/
-    -domain         target domain in scope - multiple domain are accepted: domain1,domain2,domain3...
+    -domain         domain in scope - single domain at a time
     -depth          depth of scraping - how many levels to go deep after each link found
     -timeout        timeout for each request (in seconds)
     -user-agent     user agent list as text file (one agent in each line)
@@ -183,15 +183,15 @@ Welcome to *** ScraperLoya *** the customizable WebScraber
         headers = {}
         if "-headers" in var:
             headers.update(eval(var[var.index("-headers")+1]))
+        reg_domain = "http[s]?:\/\/w{0,3}([\w.]+)\/?"
+        domain = re.findall(reg_domain,target_url)[0]
         if "-domain" in var:
-            domain = var[var.index("-headers")+1].split(",")
+            domain = var[var.index("-domain")+1][0]
 
         # setting up parameters and variables
         target = [target_url]
         Global_Links = {"files":[],"dirs":[],"in":target,"out":[],"others":[]}
         Global_list = target
-        reg_domain = "http[s]?:\/\/w{0,3}([\w.]+)\/?"
-        domain = re.findall(reg_domain,target_url)[0]
         verify = False
 
         # Scraping
