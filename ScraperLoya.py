@@ -153,7 +153,7 @@ Welcome to *** ScraperLoya *** the customizable WebScraber
         ''')
     else:
         if "-url" not in var:
-            print("no url target specified, Please include a single url as: -url http[s]://example.com/")
+            print("no url target specified, Please include a single url as: -url http://example.com/")
             exit()
         target_url = var[var.index("-url")+1]
         user_agent = ["ScraperLoya"]
