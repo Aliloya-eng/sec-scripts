@@ -1,3 +1,8 @@
+# Welcome to ScraperLoya by Ali.W.Hassan. Please use it only for ethical purposes
+# This script is currently under test - I would appreciate any advice/feedback/test results
+# For test results please provide the command used along with the output received and any extra information/suggestions
+# Contact Email: alihassan.courses@gmail.com
+
 #!/usr/bin/python3
 import re
 from requests import get
@@ -127,6 +132,11 @@ if __name__ == "__main__":
            *******************
 Welcome to *** ScraperLoya *** the customizable WebScraber
            *******************
+# Welcome to ScraperLoya by Ali.W.Hassan. Please use it only for ethical purposes
+# This script is currently under test - I would appreciate any advice/feedback/test results
+# For test results please provide the command used along with the output received and any extra information/suggestions
+# Contact Email: alihassan.courses@gmail.com
+
 
     -h              help
     -url            target url - please use the form: http://example.smth/
