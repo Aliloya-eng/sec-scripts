@@ -41,11 +41,21 @@ def get_page(url):
         return ""
     if domain not in url:
         print("////////////////////////////////  ERROR: GETTING PAGE OUT OF DOMAIN")
+        return ""
     if random_proxy==True:
-        res = get(url, timeout=timeout, verify=verify,proxies=random_proxy(proxy),headers=headers)
+        try:
+            print("Getting >> {}".format(url))
+            res = get(url, timeout=timeout, verify=verify,proxies=random_proxy(proxy),headers=headers)
+        except requests.Timeout:
+            print("Connection timeout - target {} didn't respond in time".format(url))
+            return ""
     else:
-        print("Getting >> {}".format(url))
-        res = get(url, timeout=timeout, verify=verify,headers=headers)
+        try:
+            print("Getting >> {}".format(url))
+            res = get(url, timeout=timeout, verify=verify,headers=headers)
+        except requests.Timeout:
+            print("Connection timeout - target {} didn't respond in time".format(url))
+            return ""
     return res.text
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////
