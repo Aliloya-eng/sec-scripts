@@ -6,12 +6,12 @@ This repo will be devoted to my scripted tools.<br>Most tools need a lot of test
 Performs a dictionary subdomain enumeration/bruteforce on a given domain to get subdomains with their associated IPs.
 * USAGE:     `python DNSExploration.py [Domain] [Subdomains_File]`      (python3)
 * example:   `python DNSExploration.py example.test line-separated-subdomains-wordlist.txt`
-
+-------------------------------------------
 ### <u>PreScaner</u>
 A simple enumeration tool that performs some basic scans (whois,whatweb,dig,dnsrecon,sublister,theHarvester,nikto) on a given url and a given domain, and prints the output into textfiles.
 * USAGE:     `python PreScanner.py -url [URL] -domain [Domain]`         (python3)
 * example:   `python PreScanner.py -url http://n1.example.test/ -domain example.test`
-
+--------------------------------------------
 ### <u>ScraperLoya</u>
 This tool is designed to read a web page and extract all links from it. Then, according to the provided depth, it will request each of the found links and look for links in the body of the responses.. and so on..
 <br>
@@ -32,3 +32,4 @@ Welcome to *** ScraperLoya *** the customizable WebScraber
 
 * USAGE:     `python ScraperLoya.py -url [URL] -domain [Domain] -depth [depth] -timeout [timeout] -user-agent [user-agent] -proxy [proxy] -headers [headers]`      (python3)
 * example:   `python ScraperLoya.py -url http://n1.example.test/ -domain example.test -depth 3 -timeout 30 -user-agent userAgent-file.txt -proxy proxies-file.txt -headers {header1:value1,header2:value2,header3:value3}`
+------------------------------------------
