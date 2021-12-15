@@ -13,16 +13,13 @@ A simple enumeration tool that performs some basic scans (whois,whatweb,dig,dnsr
 * example:   `python PreScanner.py -url http://n1.example.test/ -domain example.test`
 
 ### <u>ScraperLoya</u>
-This tool is designed to read a web page and look for links inside it, then according to the provided depth, it will request a get request to each found link in the target domain and then do the same for the body of the responses.. and so on..
+This tool is designed to read a web page and extract all links from it. Then, according to the provided depth, it will request each of the found links and look for links in the body of the responses.. and so on..
 <br>
 ```
            *******************
 Welcome to *** ScraperLoya *** the customizable WebScraber
            *******************
-Welcome to ScraperLoya by Ali.W.Hassan. Please use it only for ethical purposes
-This script is currently under test - I would appreciate any advice/feedback/test results
-For test results please provide the command used along with the output received and any extra information/suggestions
-Contact Email: alihassan.courses@gmail.com
+
     -h              help
     -url            target url - please use the form: http://example.smth/
     -domain         domain in scope - single domain at a time
