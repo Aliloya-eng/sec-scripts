@@ -1,5 +1,4 @@
 # My sec-scripts
-
 This repo will be devoted to my scripted tools.<br>Most tools need a lot of testing, so I would be grateful for any feedback and contribution.<br>For test results please provide the command used along with the output received and any extra information/suggestions<br>Contact Email: alihassan.courses@gmail.com
 -------------------------------------------
 ### <u>DNSExplorar</u>
