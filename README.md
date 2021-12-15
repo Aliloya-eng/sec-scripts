@@ -5,17 +5,17 @@ This repo will be devoted to my scripted tools.
 <br>Contact Email: alihassan.courses@gmail.com
 
 -------------------------------------------
-### <u>DNSExplorar</u>
+### [DNSExplorar](https://github.com/Aliloya-eng/sec-scripts/blob/main/DNSExplorar.py)
 Performs a dictionary subdomain enumeration/bruteforce on a given domain to get subdomains with their associated IPs.
 * USAGE:     `python DNSExploration.py [Domain] [Subdomains_File]`      (python3)
 * example:   `python DNSExploration.py example.test line-separated-subdomains-wordlist.txt`
 -------------------------------------------
-### <u>PreScaner</u>
+### [PreScaner](https://github.com/Aliloya-eng/sec-scripts/blob/main/PreScaner.py)
 A simple enumeration tool that performs some basic scans (whois,whatweb,dig,dnsrecon,sublister,theHarvester,nikto) on a given url and a given domain, and prints the output into textfiles.
 * USAGE:     `python PreScanner.py -url [URL] -domain [Domain]`         (python3)
 * example:   `python PreScanner.py -url http://n1.example.test/ -domain example.test`
 --------------------------------------------
-### <u>ScraperLoya</u>
+### [ScraperLoya](https://github.com/Aliloya-eng/sec-scripts/blob/main/ScraperLoya.py)
 This tool is designed to read a web page and extract all links from it. Then, according to the provided depth, it will request each of the found links and look for links in the body of the responses.. and so on..
 <br>
 ```
