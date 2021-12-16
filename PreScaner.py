@@ -30,7 +30,7 @@ print("sublister-ing")
 os.system("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
 ## theHarvester
 print("theHarvester-ing")
-os.system("theHarvester -d {} -g -s -r -n -b baidu,bing,bingapi,bufferoverun,certspotter,crtsh,dnsdumpster,duckduckgo,google,hackertarget,linkedin,linkedin_links,netcraft,omnisint,qwant,sublist3r,trello,twitter,urlscan,virustotal,yahoo > {}/theHarvester.txt".format(domain,domain))
+os.system("theHarvester -d {} -g -s -r -n -b all > {}/theHarvester.txt".format(domain,domain))
 
 # URL
 ## whatweb
