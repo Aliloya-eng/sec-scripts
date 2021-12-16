@@ -2,8 +2,17 @@ import sys
 import os
 
 vars = sys.argv[1:]
+if "-url" not in vars or "-domain" not in vars or "-h" in vars:
+    print('''
+    Please enter the url and the domain of the target
+    Usage example:   python PreScaner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test     (python3)
+    ''')
+    exit()
+
 url = vars[vars.index("-url")+1]
+url = url.replace("https","http")
 domain = vars[vars.index("-domain")+1]
+os.system("mkdir {}".format(domain))
 
 # DOMAIN
 ## whois
