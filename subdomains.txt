@@ -1,1 +1,36 @@
- wwwmailremoteblogwebmailservernssmtpcmssiteebankebankingpopimapadminsecurevpndnsftptestportalhostsupportdevwebmxemailcloudowaadmincdnapiexchangemysqlwikicpanel
+ www
+mail
+remote
+blog
+webmail
+server
+nss
+mtp
+cms
+site
+ebank
+ebanking
+pop
+imap
+admin
+secure
+vpn
+dns
+ftp
+test
+portal
+host
+support
+dev
+web
+mx
+email
+cloud
+owa
+admin
+cdn
+api
+exchange
+mysql
+wiki
+cpanel

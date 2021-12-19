@@ -42,9 +42,14 @@ def SubdomainSearch(domain, subs,nums):
                 s = word+str(i)+"."+domain
                 DNSRequest(s)
 
-print("USAGE:   python DNSExploration.py [Domain] [Subdomains_File]",linesep)
-domain = sys.argv[1]
-Subs_Wordlist = sys .argv[2]
+var = sys.argv[1:]
+if "-h" in var:
+    print("USAGE:   python DNSExploration.py -d [Domain] -w [Subdomains_File]",linesep)
+    exit()
+if "-d" in var:
+    domain = var[var.index("-d")+1]
+if "-w" in var:
+    Subs_Wordlist = var[var.index("-w")+1]
 IPs = []
 Domains = []
 Domain_Names = []
