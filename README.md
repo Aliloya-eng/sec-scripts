@@ -15,12 +15,12 @@ A simple enumeration tool that performs some basic scans (whois,whatweb,dig,dnsr
 * USAGE:     `python PreScanner.py -url [URL] -domain [Domain]`         (python3)
 * example:   `python PreScanner.py -url http://n1.example.test/ -domain example.test`
 --------------------------------------------
-### [ScraperLoya](https://github.com/Aliloya-eng/sec-scripts/blob/main/ScraperLoya.py)
+### [SpiderLoya](https://github.com/Aliloya-eng/sec-scripts/blob/main/SpiderLoya.py)
 This tool is designed to read a web page and extract all links from it. Then, according to the provided depth, it will request each of the found links and look for links in the body of the responses.. and so on..
 <br>
 ```
            *******************
-Welcome to *** ScraperLoya *** the customizable WebScraber
+Welcome to *** SpiderLoya *** the customizable WebScraber
            *******************
 
     -h              help
@@ -33,6 +33,6 @@ Welcome to *** ScraperLoya *** the customizable WebScraber
     -headers        headers to be added (except user-agent) - in dictionary form: {header1:value,header2:value,header3:value...}
 ```
 
-* USAGE:     `python ScraperLoya.py -url [URL] -domain [Domain] -depth [depth] -timeout [timeout] -user-agent [user-agent] -proxy [proxy] -headers [headers]`      (python3)
-* example:   `python ScraperLoya.py -url http://n1.example.test/ -domain example.test -depth 3 -timeout 30 -user-agent userAgent-file.txt -proxy proxies-file.txt -headers {header1:value1,header2:value2,header3:value3}`
+* USAGE:     `python SpiderLoya.py -url [URL] -domain [Domain] -depth [depth] -timeout [timeout] -user-agent [user-agent] -proxy [proxy] -headers [headers]`      (python3)
+* example:   `python SpiderLoya.py -url http://n1.example.test/ -domain example.test -depth 3 -timeout 30 -user-agent userAgent-file.txt -proxy proxies-file.txt -headers {header1:value1,header2:value2,header3:value3}`
 ------------------------------------------

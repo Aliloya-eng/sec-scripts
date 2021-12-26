@@ -1,4 +1,4 @@
- www
+www
 mail
 remote
 blog
@@ -34,3 +34,6 @@ exchange
 mysql
 wiki
 cpanel
+epay
+epayment
+pay
