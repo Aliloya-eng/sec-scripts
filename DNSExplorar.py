@@ -35,6 +35,7 @@ def DNSRequest(domain):
 def SubdomainSearch(domain, subs,nums):
     """ performs a dictionarry subdomain enumeration on a given domain to get subdomains with their associated IPs """
     for word in subs:
+        print("{}%\r".format(int(subs.index(word)/len(subs)*100)),end="")
         subdomain = word+"."+domain
         DNSRequest(subdomain)
         if nums:
@@ -44,12 +45,15 @@ def SubdomainSearch(domain, subs,nums):
 
 var = sys.argv[1:]
 if "-h" in var:
-    print("USAGE:   python DNSExploration.py -d [Domain] -w [Subdomains_File]",linesep)
+    print("USAGE:   python DNSExploration.py -d [Domain] -w [Subdomains_File] [--find-once]",linesep)
     exit()
 if "-d" in var:
     domain = var[var.index("-d")+1]
 if "-w" in var:
     Subs_Wordlist = var[var.index("-w")+1]
+count = True
+if "--find-once" in var:
+    count = False
 IPs = []
 Domains = []
 Domain_Names = []
@@ -57,7 +61,7 @@ Domain_Names = []
 
 with open(Subs_Wordlist,"r") as f:
     subs = f.read().splitlines()
-SubdomainSearch(domain,subs,True)
+SubdomainSearch(domain,subs,count)
 
 # with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
 #     executor.map(SubdomainSearch(domain,subs,True), range(sys.sys.argv[3]))
