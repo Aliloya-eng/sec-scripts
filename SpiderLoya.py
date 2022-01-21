@@ -10,7 +10,6 @@
 
 
 #!/usr/bin/python3
-from os import getloadavg
 import re
 from urllib.parse import unquote
 import sys
