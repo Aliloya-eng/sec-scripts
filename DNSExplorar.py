@@ -66,16 +66,21 @@ SubdomainSearch(domain,subs,count)
 # with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
 #     executor.map(SubdomainSearch(domain,subs,True), range(sys.sys.argv[3]))
 
-print()
+print("-----------------------------")
 print("IPs Found:")
+print("-----------------------------")
 for i in IPs:
     print(i)
 print("-----------------------------")
 print("Domains Found:")
+print("-----------------------------")
 for d in Domains:
     print(d)
 print("-----------------------------")
 print("Domain Names Found:")
+print("-----------------------------")
 for dn in Domain_Names:
     if dn != None:
         print(dn)
+print("-----------------------------")
+print("-----------------------------")
