@@ -30,7 +30,7 @@ print("sublister-ing")
 os.system("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
 ## theHarvester
 print("theHarvester-ing")
-os.system("theHarvester -d {} -g -s -r -n -b all > {}/theHarvester.txt".format(domain,domain))
+os.system("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
 
 # URL
 ## whatweb
