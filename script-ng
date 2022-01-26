@@ -1,0 +1,94 @@
+workspaces create <ProjectName>
+workspaces load <ProjectName>
+options set TIMEOUT 60
+options set NAMESERVER 8.8.8.8
+#options set THREADS 10
+db insert domains
+<TargetDomain>
+
+db insert hosts
+<TargetURL>
+
+
+
+
+
+
+modules load recon/domains-companies/pen
+run
+modules load recon/companies-domains/pen
+run
+modules load recon/companies-domains/viewdns_reverse_whois
+run
+modules load recon/companies-multi/whois_miner
+run
+modules load recon/domains-domains/brute_suffix
+run
+modules load recon/domains-hosts/bing_domain_web
+run
+modules load recon/domains-hosts/google_site_web
+run
+modules load recon/domains-hosts/brute_hosts
+run
+modules load recon/domains-hosts/certificate_transparency
+run
+modules load recon/domains-hosts/hackertarget
+run
+modules load recon/domains-hosts/netcraft
+run
+modules load recon/domains-hosts/mx_spf_ip
+run
+modules load recon/domains-hosts/ssl_san
+run
+modules load recon/domains-hosts/threatcrowd
+run
+modules load recon/domains-hosts/threatminer
+run
+modules load recon/domains-contacts/pen
+run
+modules load recon/contacts-domains/migrate_contacts
+run
+modules load recon/domains-contacts/pgp_search
+run
+modules load recon/domains-contacts/whois_pocs
+run
+modules load recon/domains-contacts/wikileaker
+run
+modules load recon/domains-vulnerabilities/ghdb
+#options set GHDB_ADVISORIES_AND_VULNERABILITIES TRUE
+#options set GHDB_ERROR_MESSAGES true
+#options set GHDB_FILES_CONTAINING_PASSWORDS true
+#options set GHDB_FILES_CONTAINING_USERNAMES true
+#options set GHDB_FILES_CONTAINING_JUICY_INFO true
+#options set GHDB_SENSITIVE_DIRECTORIES true
+run
+modules load recon/domains-vulnerabilities/xssed
+run
+modules load recon/hosts-hosts/ssltools
+run
+modules load recon/hosts-domains/migrate_hosts
+run
+modules load recon/companies-contacts/pen
+run
+modules load discovery/info_disclosure/interesting_files
+options set DOWNLOAD false
+options set PORT 443
+options set PROTOCOL https
+run
+modules load discovery/info_disclosure/cache_snoop
+options set NAMESERVER 8.8.8.8
+run
+modules load recon/contacts-contacts/mailtester
+run
+modules load recon/profiles-profiles/profiler
+run
+
+modules load reporting/josn
+options set FILENAME <FilePath>.json
+options set TABLES domains, companies, vulnerabilities, hosts, contacts, credentials, leaks
+run 
+modules load reporting/html
+options set CREATOR Aliloya
+options set CUSTOMER <CustomerName>
+options set FILENAME <FilePath>.html
+run
