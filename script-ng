@@ -22,8 +22,8 @@ modules load recon/companies-domains/viewdns_reverse_whois
 run
 modules load recon/companies-multi/whois_miner
 run
-modules load recon/domains-domains/brute_suffix
-run
+#modules load recon/domains-domains/brute_suffix
+#run
 modules load recon/domains-hosts/bing_domain_web
 run
 modules load recon/domains-hosts/google_site_web
