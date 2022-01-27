@@ -72,7 +72,9 @@ modules load recon/companies-contacts/pen
 run
 modules load discovery/info_disclosure/interesting_files
 options set DOWNLOAD false
+>>> PLEASE change the next command if the port is 80,8080 or any port other than 443
 options set PORT 443
+>>> PLEASE change the next command if the protocol is http and not https
 options set PROTOCOL https
 run
 modules load discovery/info_disclosure/cache_snoop
@@ -83,7 +85,7 @@ run
 modules load recon/profiles-profiles/profiler
 run
 
-modules load reporting/josn
+modules load reporting/json
 options set FILENAME <FilePath>.json
 options set TABLES domains, companies, vulnerabilities, hosts, contacts, credentials, leaks
 run 
