@@ -50,3 +50,7 @@ share
 tester
 routing
 node
+cert
+digital
+digitalacc
+digitalaccount

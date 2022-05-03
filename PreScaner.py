@@ -1,3 +1,4 @@
+#!/user/bin/python3
 import sys
 import os
 
@@ -43,7 +44,7 @@ if passive:
         os.system("dig {} > {}/dig.txt".format(domain,domain))
         ## dnsrecon
         print("dnsrecon-ing")
-        os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
+        # os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
         os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > {}/dnsrecon.crt.txt".format(domain,domain))
         ## sublister
         print("sublister-ing")
@@ -59,4 +60,4 @@ if active:
     os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,domain,url.replace("/","+")))
     ## nikto
     print("Nikto-ing")
-    os.system("nikto -host {} > {}/nikto-{}.txt".format(url,domain,url.replace("/","+")))
+    os.system("nikto -host -timeout 60 {} > {}/nikto-{}.txt".format(url,domain,url.replace("/","+")))
