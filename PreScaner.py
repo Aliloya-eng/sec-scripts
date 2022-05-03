@@ -32,7 +32,7 @@ active = "--A" not in vars
 overwrite = "--O" in vars
 
 if passive:
-    if overwrite or domain not in os.system("ls").split():
+    if overwrite or not os.path.isdir(domain):
         # DOMAIN - PASSIVE
         os.system("mkdir {}".format(domain))
         ## whois
@@ -56,7 +56,7 @@ if active:
     # URL - ACTIVE
     ## whatweb
     print("whatweb-ing")
-    os.system("whatweb -a 3 -v {} > {}/whatweb.txt".format(url,domain))
+    os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,domain,url.replace("/","+")))
     ## nikto
     print("Nikto-ing")
-    os.system("nikto -host {} > {}/nikto.txt".format(url,domain))
+    os.system("nikto -host {} > {}/nikto-{}.txt".format(url,domain,url.replace("/","+")))
