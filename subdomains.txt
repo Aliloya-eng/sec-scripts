@@ -1,3 +1,5 @@
+apps
+cs
 www
 mail
 remote
@@ -44,3 +46,7 @@ webdisk
 cpcontacts
 cpcalendars
 pp
+share
+tester
+routing
+node
