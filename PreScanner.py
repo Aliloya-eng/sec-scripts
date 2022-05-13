@@ -6,7 +6,7 @@ vars = sys.argv[1:]
 if "-h" in vars:
     print('''
     PreScanner is a script written in Python3 to automate some of the basic recon processes. It simply calls other tools and prints the outout into text files in a subdirectory that holds the name of the examined domain.
-    Usage example:   python PreScaner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test --A     (python3)
+    Usage example:   python PreScanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test --A     (python3)
     
     Target
         -url        the URL of the target
@@ -21,7 +21,7 @@ if "-h" in vars:
 if  "-url" not in vars or "-domain" not in vars:
     print('''
     Please enter the url and the domain of the target
-    Usage example:   python PreScaner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test     (python3)
+    Usage example:   python PreScanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test     (python3)
     ''')
     exit()
 
@@ -60,4 +60,4 @@ if active:
     os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,domain,url.replace("/","+")))
     ## nikto
     print("Nikto-ing")
-    os.system("nikto -host -timeout 60 {} > {}/nikto-{}.txt".format(url,domain,url.replace("/","+")))
+    os.system("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,domain,url.replace("/","+")))
