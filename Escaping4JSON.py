@@ -3,7 +3,7 @@ import json
 import sys
 
 print('''
-    Usage: Escaping4JSON.py input-file.txt output-file.txt
+    Usage: escaping4json.py input-file.txt output-file.txt
 ''')
 
 file = []

@@ -1,13 +1,14 @@
 #!/user/bin/python3
+from genericpath import exists
 import sys
 import os
 
 vars = sys.argv[1:]
 if "-h" in vars:
     print('''
-    PreScanner is a script written in Python3 to automate some of the basic recon processes. It simply calls other tools and prints the outout into text files in a subdirectory that holds the name of the examined domain.
-    Usage example:   python PreScanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test --A     (python3)
-    
+    pre-scanner is a script written in Python3 to automate some of the basic recon processes.
+    It simply calls other tools and prints the output into text files in a subdirectory that holds the name of the examined domain.
+
     Target
         -url        the URL of the target
         -domain     the domain of the target
@@ -15,13 +16,15 @@ if "-h" in vars:
         --A         exclude active(url) scans
         --P         exclude passive(domain) scans
         --O         overwrite previous scans (for domain scans only, url scans are overwritten anyway if not excluded)
+
+    Usage example:   python pre-scanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test --A         
     ''')
     exit()
 
 if  "-url" not in vars or "-domain" not in vars:
     print('''
     Please enter the url and the domain of the target
-    Usage example:   python PreScanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test     (python3)
+    Usage example:   python pre-scanner.py -url http://sub1.sub2.target.test/ -domain sub2.target.test     (python3)
     ''')
     exit()
 
@@ -52,6 +55,16 @@ if passive:
         ## theHarvester
         print("theHarvester-ing")
         os.system("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
+        ## dns-explorar
+        print("dns-explorar-ing")
+        if not exists("dns-explorar.py"):
+            print(" --- DNSEplorar is not installed in this directory, if you want to use this tool please download it in the same directory with 'wget https://raw.githubusercontent.com/Aliloya-eng/sec-scripts/main/dns-explorar.py' --- ")
+        if not exists("subdomains.txt"):
+            print(" --- No 'subdomain.txt' wordlist was found to use the dns-explorar tool, if you want to use this tool please put the subdomains wordlist in the same directory under the name subdomains.txt --- ")
+        if exists("dns-explorar.py") and exists("subdomains.txt"):
+            os.system("python3 dns-explorar -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+            os.system("python dns-explorar -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+
 
 if active:
     # URL - ACTIVE

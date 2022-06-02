@@ -1,4 +1,4 @@
-# Welcome to SpiderLoya by Ali.W.Hassan. Please use it only for ethical purposes
+# Welcome to spiderloya by Ali.W.Hassan. Please use it only for ethical purposes
 # This script is currently under test - I would appreciate any advice/feedback/test results
 # For test results please provide the command used along with the output received and any extra information/suggestions
 # Contact Email: alihassan.courses@gmail.com
@@ -196,9 +196,9 @@ if __name__ == "__main__":
     if "-h" in var or len(var)==1:
         print('''
            *******************
-Welcome to *** SpiderLoya *** the customizable WebScraber
+Welcome to *** spiderloya *** the customizable WebScraber
            *******************
-# Welcome to SpiderLoya by Ali.W.Hassan. Please use it only for ethical purposes
+# Welcome to spiderloya by Ali.W.Hassan. Please use it only for ethical purposes
 # This script is currently under test - I would appreciate any advice/feedback/test results
 # For test results please provide the command used along with the output received and any extra information/suggestions
 # Contact Email: alihassan.courses@gmail.com
@@ -208,7 +208,7 @@ Welcome to *** SpiderLoya *** the customizable WebScraber
     -domain         domain in scope - single domain at a time
     -depth          depth of scraping - how many levels to go deep after each link found = default 1
     -timeout        timeout for each request (in seconds) = default 30
-    -user-agent     user agent list as text file (one agent in each line) = default SpiderLoya
+    -user-agent     user agent list as text file (one agent in each line) = default spiderloya
     -proxy          proxies list as text file (one proxy in each line): 127.0.0.1:8080
     -headers        headers to be added (except user-agent) - in dictionarry form: {header1:value,header2:value,header3:value...}
         ''')
@@ -219,7 +219,7 @@ Welcome to *** SpiderLoya *** the customizable WebScraber
         target_url = str(var[var.index("-url")+1]).replace("https","http")
         if target_url[-1] != "/":
             target_url = target_url+"/"
-        user_agent = ["SpiderLoya"]
+        user_agent = ["spiderloya"]
         if "-user-agent" in var:
             with open(var[var.index("-user-agent")+1]) as agents:
                 user_agent = agents.readlines()
