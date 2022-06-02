@@ -62,8 +62,8 @@ if passive:
         if not exists("subdomains.txt"):
             print(" --- No 'subdomain.txt' wordlist was found to use the dns-explorar tool, if you want to use this tool please put the subdomains wordlist in the same directory under the name subdomains.txt --- ")
         if exists("dns-explorar.py") and exists("subdomains.txt"):
-            os.system("python3 dns-explorar -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
-            os.system("python dns-explorar -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+            os.system("python3 dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+            os.system("python dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
 
 
 if active:
