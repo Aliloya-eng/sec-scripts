@@ -15,13 +15,12 @@ def ReverseDNS(ip):
     except socket.herror:
         return None
 
-def DNSRequest(domain):
+def DNSRequest(domain, i):
     """ Gets the IP on a given sub/domain """
     try:
         result = dns.resolver.resolve(domain)
         if result:
-            if domain not in Domains:
-                Domains.append(domain)
+            Domains[i+1].append(domain)
             for answer in result:
                 if str(answer) not in IPs:
                     IPs.append(str(answer))
@@ -32,16 +31,16 @@ def DNSRequest(domain):
     except (dns.resolver.NXDOMAIN, dns.exception.Timeout):
         return []
 
-def SubdomainSearch(domain, subs,nums):
+def SubdomainSearch(domain, subs, nums, i):
     """ performs a dictionarry subdomain enumeration on a given domain to get subdomains with their associated IPs """
     for word in subs:
-        print("{}%\r".format(int(subs.index(word)/len(subs)*100)),end="")
+#        print("{}%\r".format(int(subs.index(word)/len(subs)*len(Domains[i])*100)),end="")
         subdomain = word+"."+domain
-        DNSRequest(subdomain)
+        DNSRequest(subdomain, i)
         if nums:
-            for i in range(0,10):
-                s = word+str(i)+"."+domain
-                DNSRequest(s)
+            for j in range(0,10):
+                s = word+str(j)+"."+domain
+                DNSRequest(s,i)
 
 var = sys.argv[1:]
 if "-h" in var:
@@ -55,13 +54,18 @@ count = True
 if "--find-once" in var:
     count = False
 IPs = []
-Domains = []
+Domains=[[domain]]
 Domain_Names = []
 # x = 0
 
 with open(Subs_Wordlist,"r") as f:
     subs = f.read().splitlines()
-SubdomainSearch(domain,subs,count)
+
+for i in range(3):
+    Domains.append([])
+    for d in Domains[i]:
+        SubdomainSearch(d,subs,count,i)
+Domains = list(Domains[0]+Domains[1]+Domains[2]+Domains[3])    
 
 # with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
 #     executor.map(SubdomainSearch(domain,subs,True), range(sys.sys.argv[3]))
