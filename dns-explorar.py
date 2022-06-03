@@ -4,6 +4,8 @@ import dns
 import dns.resolver
 import socket
 import sys
+
+from pyparsing import empty
 # import threading
 # import concurrent.futures
 
@@ -24,7 +26,7 @@ def DNSRequest(domain, i):
             for answer in result:
                 if str(answer) not in IPs:
                     IPs.append(str(answer))
-                print(domain+":::"+str(answer))
+                print(domain+":::"+str(answer)+"                   ")
                 Domain_Name = ReverseDNS(answer.to_text())
                 if Domain_Name not in Domain_Names:
                     Domain_Names.append(Domain_Name)
@@ -34,7 +36,7 @@ def DNSRequest(domain, i):
 def SubdomainSearch(domain, subs, nums, i):
     """ performs a dictionarry subdomain enumeration on a given domain to get subdomains with their associated IPs """
     for word in subs:
-        print("{}%\r".format(int(100*subs.index(word)/len(subs)*len(Domains[i]))),end="")
+        print("Depth level ({}) : {} / {} = {}%                    \r".format(i+1,(len(subs)*(Domains[i].index(domain)))+subs.index(word),len(subs)*len(Domains[i]),int(100*(((len(subs)*(Domains[i].index(domain)))+subs.index(word))/(len(subs)*len(Domains[i]))))),end="")
         subdomain = word+"."+domain
         DNSRequest(subdomain, i)
         if nums:
@@ -71,6 +73,8 @@ for i in range(3):
     Domains.append([])
     for d in Domains[i]:
         SubdomainSearch(d,subs,count,i)
+if len(Domains[3]) > 0:
+    print("level 3 of subdomains is not empty, if you want to discover further subdomains with deeper levels please provide the level 3 domains found in the output back as input to the tool manually and run it against them")
 Domains = list(Domains[0]+Domains[1]+Domains[2]+Domains[3])    
 
 # with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
