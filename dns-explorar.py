@@ -34,7 +34,7 @@ def DNSRequest(domain, i):
 def SubdomainSearch(domain, subs, nums, i):
     """ performs a dictionarry subdomain enumeration on a given domain to get subdomains with their associated IPs """
     for word in subs:
-#        print("{}%\r".format(int(subs.index(word)/len(subs)*len(Domains[i])*100)),end="")
+        print("{}%\r".format(int(100*subs.index(word)/len(subs)*len(Domains[i]))),end="")
         subdomain = word+"."+domain
         DNSRequest(subdomain, i)
         if nums:
@@ -48,8 +48,14 @@ if "-h" in var:
     exit()
 if "-d" in var:
     domain = var[var.index("-d")+1]
+else:
+    print("please use -d to provide the target domain")
+    exit()
 if "-w" in var:
     Subs_Wordlist = var[var.index("-w")+1]
+else:
+    print("please use -w to provide a sundomains wordlist")
+    exit()
 count = True
 if "--find-once" in var:
     count = False
