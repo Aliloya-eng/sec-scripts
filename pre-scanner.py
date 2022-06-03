@@ -33,25 +33,27 @@ passive = not ("--P" in vars or "-d" not in vars)
 active = not ("--A" in vars or "-u" not in vars)
 overwrite = "--O" in vars
 
-u = vars[vars.index("-u")+1]
-urls=[]
-if exists(u):
-    with open(u,"r") as f:
-        for l in f:
-            l = l.replace("https","http")
-            urls.append(l)
-else:
-    u = u.replace("https","http")
-    urls=[u]
+if "-u" in vars:
+    u = vars[vars.index("-u")+1]
+    urls=[]
+    if exists(u):
+        with open(u,"r") as f:
+            for l in f:
+                l = l.replace("https","http")
+                urls.append(l)
+    else:
+        u = u.replace("https","http")
+        urls=[u]
 
-d = vars[vars.index("-d")+1]
-domains=[]
-if exists(d):
-    with open(d,"r") as f:
-        for l in f:
-            domains.append(l)
-else:
-    domains=[d]
+if "-d" in vars:
+    d = vars[vars.index("-d")+1]
+    domains=[]
+    if exists(d):
+        with open(d,"r") as f:
+            for l in f:
+                domains.append(l)
+    else:
+        domains=[d]
 
 if passive:
     for domain in domains:
