@@ -55,30 +55,47 @@ if "-d" in vars:
     else:
         domains=[d]
 
+print('''
+We will do some scans for you. Other tools that we suggest you visit yourself are:
+- wappalyzer
+- Recon-ng
+- https://www.netcraft.com/
+- https://dnsdumpster.com/
+- https://www.shodan.io/
+- https://haveibeenpwned.com/
+- https://breachchecker.com/
+- https://osintframework.com/
+...
+..
+.
+''')
+
+
 if passive:
     for domain in domains:
+        domain = domain.strip()
         if overwrite or not os.path.isdir(domain):
             # DOMAIN - PASSIVE
             if not exists(domain):
                 os.system("mkdir {}".format(domain))
             ## whois
-            print("whois-ing")
+            print("whois {} > {}/whois.txt".format(domain,domain))
             os.system("whois {} > {}/whois.txt".format(domain,domain))
-            ## dig
-            print("dig-ing")
-            os.system("dig {} > {}/dig.txt".format(domain,domain))
+            ## host
+            print("host -a {} > {}/host.txt".format(domain,domain))
+            os.system("host -a {} > {}/host.txt".format(domain,domain))
             ## dnsrecon
-            print("dnsrecon-ing")
-            # os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
+            print("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > {}/dnsrecon.crt.txt".format(domain,domain))
             os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > {}/dnsrecon.crt.txt".format(domain,domain))
+            # os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
             ## sublister
-            print("sublister-ing")
+            print("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
             os.system("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
             ## theHarvester
-            print("theHarvester-ing")
+            print("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
             os.system("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
             ## dns-explorar
-            print("dns-explorar-ing")
+            print("python(3) dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
             if not exists("dns-explorar.py"):
                 print(" --- DNSEplorar is not installed in this directory, if you want to use this tool please download it in the same directory with 'wget https://raw.githubusercontent.com/Aliloya-eng/sec-scripts/main/dns-explorar.py' --- ")
             if not exists("subdomains.txt"):
@@ -89,13 +106,14 @@ if passive:
 
 if active:
     for url in urls:
+        url = url.strip()
         # URL - ACTIVE
         out_name = url.removeprefix("https://")
         if not exists(out_name):
             os.system("mkdir {}".format(out_name))
         ## whatweb
-        print("whatweb-ing")
+        print("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,out_name,url.replace("/","+")))
         os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,out_name,url.replace("/","+")))
         ## nikto
-        print("Nikto-ing")
+        print("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,out_name,url.replace("/","+")))
         os.system("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,out_name,url.replace("/","+")))
