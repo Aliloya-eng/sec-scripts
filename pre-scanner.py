@@ -91,8 +91,8 @@ if passive:
             os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > OUT/{}/dnsrecon.crt.txt".format(domain,domain))
             # os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
             ## sublister
-            print("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
-            os.system("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
+            print("sublist3r -d {} -v > OUT/{}/sublist3r.txt".format(domain,domain))
+            os.system("sublist3r -d {} -v > OUT/{}/sublist3r.txt".format(domain,domain))
             ## theHarvester
             print("theHarvester -d {} -g -s -r -b all > OUT/{}/theHarvester.txt".format(domain,domain))
             os.system("theHarvester -d {} -g -s -r -b all > OUT/{}/theHarvester.txt".format(domain,domain))
