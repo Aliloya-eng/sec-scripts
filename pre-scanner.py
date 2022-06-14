@@ -55,6 +55,9 @@ if "-d" in vars:
     else:
         domains=[d]
 
+if not exists("OUT"):
+    os.system("mkdir OUT")
+
 print('''
 We will do some scans for you. Other tools that we suggest you visit yourself are:
 - wappalyzer
@@ -70,47 +73,46 @@ We will do some scans for you. Other tools that we suggest you visit yourself ar
 .
 ''')
 
-
 if passive:
     for domain in domains:
         domain = domain.strip()
         if overwrite or not os.path.isdir(domain):
             # DOMAIN - PASSIVE
-            if not exists(domain):
-                os.system("mkdir {}".format(domain))
+            if not exists("OUT/"+domain):
+                os.system("mkdir OUT/{}".format(domain))
             ## whois
-            print("whois {} > {}/whois.txt".format(domain,domain))
-            os.system("whois {} > {}/whois.txt".format(domain,domain))
+            print("whois {} > OUT/{}/whois.txt".format(domain,domain))
+            os.system("whois {} > OUT/{}/whois.txt".format(domain,domain))
             ## host
-            print("host -a {} > {}/host.txt".format(domain,domain))
-            os.system("host -a {} > {}/host.txt".format(domain,domain))
+            print("host -a {} > OUT/{}/host.txt".format(domain,domain))
+            os.system("host -a {} > OUT/{}/host.txt".format(domain,domain))
             ## dnsrecon
-            print("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > {}/dnsrecon.crt.txt".format(domain,domain))
-            os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > {}/dnsrecon.crt.txt".format(domain,domain))
+            print("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > OUT/{}/dnsrecon.crt.txt".format(domain,domain))
+            os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t crt > OUT/{}/dnsrecon.crt.txt".format(domain,domain))
             # os.system("dnsrecon -d {} -a -s -b -y -k -w -z -t std > {}/dnsrecon.std.txt".format(domain,domain))
             ## sublister
             print("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
             os.system("sublist3r -d {} -v > {}/sublist3r.txt".format(domain,domain))
             ## theHarvester
-            print("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
-            os.system("theHarvester -d {} -g -s -r -b all > {}/theHarvester.txt".format(domain,domain))
+            print("theHarvester -d {} -g -s -r -b all > OUT/{}/theHarvester.txt".format(domain,domain))
+            os.system("theHarvester -d {} -g -s -r -b all > OUT/{}/theHarvester.txt".format(domain,domain))
             ## dns-explorar
-            print("python(3) dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+            print("python(3) dns-explorar.py -d {} -w subdomains.txt > OUT/{}/dns-explorar.txt".format(domain,domain))
             if not exists("dns-explorar.py"):
                 print(" --- DNSEplorar is not installed in this directory, if you want to use this tool please download it in the same directory with 'wget https://raw.githubusercontent.com/Aliloya-eng/sec-scripts/main/dns-explorar.py' --- ")
             if not exists("subdomains.txt"):
                 print(" --- No 'subdomain.txt' wordlist was found to use the dns-explorar tool, if you want to use this tool please put the subdomains wordlist in the same directory under the name subdomains.txt --- ")
             if exists("dns-explorar.py") and exists("subdomains.txt"):
-                os.system("python3 dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
-                os.system("python dns-explorar.py -d {} -w subdomains.txt > {}/dns-explorar.txt".format(domain,domain))
+                os.system("python3 dns-explorar.py -d {} -w subdomains.txt > OUT/{}/dns-explorar.txt".format(domain,domain))
+                os.system("python dns-explorar.py -d {} -w subdomains.txt > OUT/{}/dns-explorar.txt".format(domain,domain))
 
 if active:
     for url in urls:
         url = url.strip()
-        out_name = url.removeprefix("http://")
+        out_name = "OUT/"+url.removeprefix("http://")
         for domain in domains:
             if domain in url:
-                out_name = domain
+                out_name = "OUT/"+domain
         # URL - ACTIVE
         if not exists(out_name):
             os.system("mkdir {}".format(out_name))
