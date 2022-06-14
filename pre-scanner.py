@@ -107,8 +107,11 @@ if passive:
 if active:
     for url in urls:
         url = url.strip()
+        out_name = url.removeprefix("http://")
+        for domain in domains:
+            if domain in url:
+                out_name = domain
         # URL - ACTIVE
-        out_name = url.removeprefix("https://")
         if not exists(out_name):
             os.system("mkdir {}".format(out_name))
         ## whatweb
