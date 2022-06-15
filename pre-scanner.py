@@ -110,9 +110,10 @@ if active:
     for url in urls:
         url = url.strip()
         out_name = "OUT/"+url.removeprefix("http://")
-        for domain in domains:
-            if domain in url:
-                out_name = "OUT/"+domain
+        if "-d" in vars:
+            for domain in domains:
+                if domain in url:
+                    out_name = "OUT/"+domain
         # URL - ACTIVE
         if not exists(out_name):
             os.system("mkdir {}".format(out_name))
