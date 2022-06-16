@@ -39,11 +39,9 @@ if "-u" in vars:
     if exists(u):
         with open(u,"r") as f:
             for l in f:
-                l = l.replace("https","http")
-                urls.append(l)
+                urls.append(l.strip())
     else:
-        u = u.replace("https","http")
-        urls=[u]
+        urls=[u.strip()]
 
 if "-d" in vars:
     d = vars[vars.index("-d")+1]
@@ -51,9 +49,9 @@ if "-d" in vars:
     if exists(d):
         with open(d,"r") as f:
             for l in f:
-                domains.append(l)
+                domains.append(l.strip())
     else:
-        domains=[d]
+        domains=[d.strip()]
 
 if not exists("OUT"):
     os.system("mkdir OUT")
@@ -75,7 +73,6 @@ We will do some scans for you. Other tools that we suggest you visit yourself ar
 
 if passive:
     for domain in domains:
-        domain = domain.strip()
         if overwrite or not os.path.isdir(domain):
             # DOMAIN - PASSIVE
             if not exists("OUT/"+domain):
@@ -108,18 +105,17 @@ if passive:
 
 if active:
     for url in urls:
-        url = url.strip()
-        out_name = "OUT/"+url.removeprefix("http://")
+        out_name = url.removeprefix("http://").removeprefix("https://").replace("/","+")
         if "-d" in vars:
             for domain in domains:
                 if domain in url:
-                    out_name = "OUT/"+domain
+                    out_name = domain
         # URL - ACTIVE
         if not exists(out_name):
             os.system("mkdir {}".format(out_name))
         ## whatweb
-        print("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,out_name,url.replace("/","+")))
-        os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,out_name,url.replace("/","+")))
+        print("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,"OUT/"+out_name,out_name))
+        os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,"OUT/"+out_name,out_name))
         ## nikto
-        print("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,out_name,url.replace("/","+")))
-        os.system("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,out_name,url.replace("/","+")))
+        print("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,"OUT/"+out_name,out_name))
+        os.system("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,"OUT/"+out_name,out_name))
