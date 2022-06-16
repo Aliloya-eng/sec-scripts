@@ -112,10 +112,10 @@ if active:
                     out_name = domain
         # URL - ACTIVE
         if not exists(out_name):
-            os.system("mkdir {}".format(out_name))
+            os.system("mkdir OUT/{}".format(out_name))
         ## whatweb
-        print("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,"OUT/"+out_name,out_name))
-        os.system("whatweb -a 3 -v {} > {}/whatweb-{}.txt".format(url,"OUT/"+out_name,out_name))
+        print("whatweb -a 3 -v {} > {}/whatweb.txt".format(url,"OUT/"+out_name))
+        os.system("whatweb -a 3 -v {} > {}/whatweb.txt".format(url,"OUT/"+out_name))
         ## nikto
-        print("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,"OUT/"+out_name,out_name))
-        os.system("nikto -host {} -timeout 60 > {}/nikto-{}.txt".format(url,"OUT/"+out_name,out_name))
+        print("nikto -host {} -timeout 60 > {}/nikto.txt".format(url,"OUT/"+out_name))
+        os.system("nikto -host {} -timeout 60 > {}/nikto.txt".format(url,"OUT/"+out_name))
