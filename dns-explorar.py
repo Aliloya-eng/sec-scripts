@@ -30,7 +30,7 @@ def DNSRequest(domain, i):
                 Domain_Name = ReverseDNS(answer.to_text())
                 if Domain_Name not in Domain_Names:
                     Domain_Names.append(Domain_Name)
-    except (dns.resolver.NXDOMAIN, dns.exception.Timeout):
+    except (dns.resolver.NXDOMAIN, dns.exception.Timeout, dns.resolver.NoAnswer):
         return []
 
 def SubdomainSearch(domain, subs, nums, i):
