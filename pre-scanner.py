@@ -60,6 +60,7 @@ print('''
 We will do some scans for you. Other tools that we suggest you visit yourself are:
 - wappalyzer
 - Recon-ng
+- https://www.ssllabs.com/ssltest/
 - https://www.netcraft.com/
 - https://dnsdumpster.com/
 - https://www.shodan.io/
