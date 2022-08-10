@@ -3,6 +3,7 @@ from base64 import urlsafe_b64decode
 from genericpath import exists
 import sys
 import os
+import re
 
 vars = sys.argv[1:]
 if "-h" in vars:
@@ -114,9 +115,15 @@ if active:
         # URL - ACTIVE
         if not exists(out_name):
             os.system("mkdir OUT/{}".format(out_name))
+        ## nmap
+        target = re.search("\/\/(.*)\/",url)
+        print(target)
+        print("nmap -T4 -p80,443,8080 -A -v --script http* {} > OUT/{}/nmap.txt".format(target,out_name))
+        os.system("nmap -T4 -p80,443,8080 -A -v --script http* {} > OUT/{}/nmap.txt".format(target,out_name))
         ## whatweb
-        print("whatweb -a 3 -v {} > {}/whatweb.txt".format(url,"OUT/"+out_name))
-        os.system("whatweb -a 3 -v {} > {}/whatweb.txt".format(url,"OUT/"+out_name))
+        print("whatweb -a 3 -v {} > OUT/{}/whatweb.txt".format(url,out_name))
+        os.system("whatweb -a 3 -v {} > OUT/{}/whatweb.txt".format(url,out_name))
         ## nikto
-        print("nikto -host {} -timeout 60 > {}/nikto.txt".format(url,"OUT/"+out_name))
-        os.system("nikto -host {} -timeout 60 > {}/nikto.txt".format(url,"OUT/"+out_name))
+        print("nikto -host {} -timeout 60 > OUT/{}/nikto.txt".format(url,out_name))
+        os.system("nikto -host {} -timeout 60 > OUT/{}/nikto.txt".format(url,out_name))
+        
