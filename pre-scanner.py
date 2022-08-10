@@ -116,8 +116,7 @@ if active:
         if not exists(out_name):
             os.system("mkdir OUT/{}".format(out_name))
         ## nmap
-        target = re.search("\/\/(.*)\/",url)
-        print(target)[0]
+        target = re.search("\/\/(.*)\/",url)[0].replace("/","").strip()
         print("nmap -T4 -p80,443,8080 -A -v --script http* {} > OUT/{}/nmap.txt".format(target,out_name))
         os.system("nmap -T4 -p80,443,8080 -A -v --script http* {} > OUT/{}/nmap.txt".format(target,out_name))
         ## whatweb
